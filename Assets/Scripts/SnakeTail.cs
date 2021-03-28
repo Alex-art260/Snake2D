@@ -14,8 +14,6 @@ public class SnakeTail : MonoBehaviour
     void Start()
     {
         positions.Add(snakeHead.position);
-      //  AddBody();
-      //  AddBody();
     }
 
 
@@ -42,5 +40,6 @@ public class SnakeTail : MonoBehaviour
         Transform body =  Instantiate(snakeHead, positions[positions.Count - 1], Quaternion.identity, transform);
         snakeBody.Add(body);
         positions.Add(body.position);
+        body.gameObject.tag = "Body";
     }
 }

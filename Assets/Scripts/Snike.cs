@@ -8,17 +8,22 @@ public class Snike : MonoBehaviour
 
     private Vector2Int gridMoveDirection;
     private Vector2Int gridPozition;
-    private float gridMoveTimer;
-    private float gridMoveTimerMax;
+    public float gridMoveTimer;
+    public float gridMoveTimerMax;
 
 
 
     private void Awake()
     {
         gridPozition = new Vector2Int(10, 10);
-        gridMoveTimerMax = .5f;
+        gridMoveTimerMax = 1f;
         gridMoveTimer = gridMoveTimerMax;
         gridMoveDirection = new Vector2Int(1, 0);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(NormalSpeedSnake());
     }
 
 
@@ -27,6 +32,7 @@ public class Snike : MonoBehaviour
     {
         HandleInput();
         HandleGridMovement();
+        
     }
 
     private void HandleInput()
@@ -89,8 +95,25 @@ public class Snike : MonoBehaviour
     {
         if(collision.gameObject.tag == "Board")
         {
-            Debug.Log("1111");
+            Debug.Log("Lose");
         }
     }
+
+    IEnumerator NormalSpeedSnake()
+    {
+        while(true)
+        {
+
+            if (Time.timeSinceLevelLoad > 5f)
+            {
+                gridMoveTimerMax -= 0.05f;
+            }
+
+            yield return new WaitForSeconds(5f);
+        }
+
+        
+    }
+
 
 }

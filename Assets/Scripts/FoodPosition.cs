@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class FoodPosition : MonoBehaviour
 {
-    private SnakeTail snike;
+    private SnakeTail snikeTail;
     private Food food;
+    private Snike snike;
 
-    public static bool eat;
+    public static bool eat = false;
 
     private void Start()
     {
-        snike = FindObjectOfType<SnakeTail>();
+        snikeTail = FindObjectOfType<SnakeTail>();
         food = FindObjectOfType<Food>();
+        snike = FindObjectOfType<Snike>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            eat = true;
-            Debug.Log("11111");
+            
             Destroy(gameObject);
             food.SpawnFood();
-            snike.AddBody();
+            snikeTail.AddBody();
+            snike.gridMoveTimerMax += 0.05f;
         }
     }
 }

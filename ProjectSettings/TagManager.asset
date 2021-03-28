@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Food
   - Board
+  - Body
   layers:
   - Default
   - TransparentFX
